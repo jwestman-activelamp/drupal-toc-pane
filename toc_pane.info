@@ -1,0 +1,5 @@
+name = Table of Contents Pane
+description = Provides a table of contents pane.
+core = 7.x
+
+dependencies[] = ctools

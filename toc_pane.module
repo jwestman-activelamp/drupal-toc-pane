@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Provides a ctools content type for table of contents
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory
+ */
+function toc_pane_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Get the location of the jquery library.
+ *
+ * @return
+ *   The location of the library, or FALSE if the library isn't installed.
+ */
+function toc_pane_get_toc_path() {
+  $path = FALSE;
+  if (function_exists('libraries_get_path')) {
+    $path = libraries_get_path('toc');
+    if (!file_exists($path)) {
+      $path = FALSE;
+    }
+  }
+  elseif (file_exists('sites/all/libraries/toc/toc.min.js')) {
+    $path = 'sites/all/libraries/toc';
+  }
+  return $path;
+}
